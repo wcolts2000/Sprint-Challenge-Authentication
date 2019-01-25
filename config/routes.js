@@ -1,4 +1,3 @@
-const express = require("express");
 const bcrypt = require("bcryptjs");
 const axios = require("axios");
 const db = require("../database/dbConfig");
@@ -11,11 +10,8 @@ module.exports = server => {
   server.get("/api/jokes", authenticate, getJokes);
 };
 
-// const router = express.Router();
-
 function register(req, res, next) {
   // implement user registration
-  // router.post("/", (req, res) => {});
   const user = req.body;
   user.password = bcrypt.hashSync(user.password, 14);
   if (user.username && user.password) {
