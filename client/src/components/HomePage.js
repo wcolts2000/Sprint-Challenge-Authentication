@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
 function HomePage(props) {
   return (
@@ -13,4 +12,4 @@ function HomePage(props) {
   );
 }
 
-export default withRouter(HomePage);
+export default HomePage;
