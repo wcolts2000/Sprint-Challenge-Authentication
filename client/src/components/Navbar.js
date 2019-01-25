@@ -12,10 +12,6 @@ const Nav = styled.nav`
 
 const NavRight = styled.div`
   margin-left: auto;
-
-  @media (max-width: 450) {
-    display: none;
-  }
 `;
 const HomeNavLink = styled(NavLink)`
   text-decoration: none;
@@ -24,6 +20,11 @@ const HomeNavLink = styled(NavLink)`
   margin-right: 30px;
   transition: all 0.3s ease-in-out;
 
+  &.home {
+    @media (max-width: 450px) {
+      display: none;
+    }
+  }
   &:hover {
     opacity: 0.6;
   }
@@ -60,7 +61,7 @@ const StyledLink = styled(Link)`
 function Navbar({ logout }) {
   return (
     <Nav>
-      <HomeNavLink exact to="/">
+      <HomeNavLink exact to="/" className="home">
         THE<span>JOKE</span>FACTORY
       </HomeNavLink>
       <NavRight>

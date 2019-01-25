@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 387px);
   height: 100%;
   background: #17333f;
   display: flex;
