@@ -20,12 +20,22 @@ const Card = styled.div`
   padding: 150px 0 0;
 `;
 
+const H3 = styled.h3`
+  font-size: 20px;
+  background: white;
+  color: #fd554c;
+  margin-bottom: 0;
+  line-height: 3;
+  border: 1px solid #fd554c;
+`;
+
 const Header = styled.div`
   display: flex;
   background: white;
 `;
 
 const Register = styled.p`
+  transition: all 0.3s ease-in-out;
   margin: 0;
   color: ${props => (props.active ? "white" : "#fd554c")};
   flex: 1;
@@ -42,6 +52,7 @@ const Register = styled.p`
 `;
 
 const Log = styled.p`
+  transition: all 0.3s ease-in-out;
   margin: 0;
   color: ${props => (props.active ? "white" : "#fd554c")};
   line-height: 4;
@@ -73,17 +84,22 @@ const Button = styled.button`
   outline: none;
   font-weight: bold;
   font-family: "Bree Serif", serif;
+  transition: all 0.3s ease-in-out;
   &:hover {
     opacity: 0.8;
   }
 `;
 
 export default class Login extends Component {
-  state = {
-    username: "",
-    password: "",
-    register: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      register: false,
+      error: false
+    };
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -93,20 +109,51 @@ export default class Login extends Component {
     };
     if (this.state.register) {
       axios
-        .post("http://localhost:3300/api/register", this.state)
+        .post("http://localhost:3300/api/register", user)
         .then(res => {
-          localStorage.setItem("jwt", res.data.token);
-          this.props.history.push("/joke-bin");
+          if (res.status === 201) {
+            localStorage.setItem("jwt", res.data.token);
+            this.setState({
+              username: "",
+              password: "",
+              department: "",
+              error: ""
+            });
+            this.props.history.push("/joke-bin");
+          } else {
+            return null;
+          }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          this.setState({ error: err.message });
+          setTimeout(() => {
+            this.setState({
+              username: "",
+              error: ""
+            });
+            this.username.focus();
+          }, 2000);
+          console.error(err);
+        });
     } else {
       axios
         .post("http://localhost:3300/api/login", user)
         .then(res => {
           localStorage.setItem("jwt", res.data.token);
+          this.props.login();
           this.props.history.push("/joke-bin");
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          if (err) {
+            this.setState({ error: true });
+            setTimeout(() => {
+              this.setState({ error: false, username: "", password: "" });
+            }, 2000);
+            console.log(err);
+          } else {
+            console.error(err);
+          }
+        });
     }
   };
 
@@ -115,9 +162,15 @@ export default class Login extends Component {
   };
 
   render() {
+    const { error } = this.state;
     return (
       <Div>
         <Card>
+          {error && this.state.register ? (
+            <H3>Username Taken</H3>
+          ) : (
+            error && <H3>Incorrect Username/Password</H3>
+          )}
           <Header>
             <Register
               active={this.state.register ? "active" : null}
@@ -141,6 +194,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
               placeholder="username..."
               autoComplete="off"
+              ref={input => (this.username = input)}
             />
             <UserInput
               required

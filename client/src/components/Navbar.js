@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = styled.nav`
@@ -17,6 +17,7 @@ const HomeNavLink = styled(NavLink)`
   color: #17333f;
   font-weight: bolder;
   margin-right: 30px;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     opacity: 0.6;
@@ -32,7 +33,26 @@ const HomeNavLink = styled(NavLink)`
   }
 `;
 
-function Navbar() {
+const StyledLink = styled(Link)`
+  background: #17333f;
+  padding: 10px 15px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: #fd554c;
+  }
+`;
+
+function Navbar({ logout }) {
   return (
     <Nav>
       <HomeNavLink exact to="/">
@@ -41,6 +61,9 @@ function Navbar() {
       <NavRight>
         <HomeNavLink to="/login">Signin/Register</HomeNavLink>
         <HomeNavLink to="/joke-bin">JokeBin</HomeNavLink>
+        <StyledLink to="/" onClick={() => logout()}>
+          Logout
+        </StyledLink>
       </NavRight>
     </Nav>
   );
