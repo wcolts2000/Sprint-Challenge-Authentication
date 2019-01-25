@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import styled from "styled-components";
@@ -68,5 +69,8 @@ function Navbar({ logout }) {
     </Nav>
   );
 }
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired
+};
 
 export default withRouter(Navbar);

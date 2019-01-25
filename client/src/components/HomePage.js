@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -54,5 +55,11 @@ function HomePage(props) {
     </Div>
   );
 }
+
+HomePage.propTypes = {
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
+};
 
 export default HomePage;
