@@ -72,11 +72,19 @@ export default class JokeBin extends Component {
     return (
       <Div>
         <H1>
-          <span role="img" aria-label="grinning emoji">
+          <span
+            style={{ fontWeight: "normal" }}
+            role="img"
+            aria-label="grinning emoji"
+          >
             😎
           </span>{" "}
           The Joke Repository{" "}
-          <span role="img" aria-label="grinning cat">
+          <span
+            style={{ fontWeight: "normal" }}
+            role="img"
+            aria-label="grinning cat"
+          >
             😹
           </span>
         </H1>

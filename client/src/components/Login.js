@@ -130,6 +130,7 @@ export default class Login extends Component {
           setTimeout(() => {
             this.setState({
               username: "",
+              password: "",
               error: ""
             });
             this.username.focus();

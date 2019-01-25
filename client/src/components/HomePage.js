@@ -3,11 +3,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-  min-height: calc(100vh - 87px);
+  min-height: calc(100vh - 387px);
+  height: 100%;
   background: #17333f;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 300px;
+  background-image: url("https://images.pexels.com/photos/1115680/pexels-photo-1115680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-position: center;
 `;
 
 const LeftButton = styled.button`
