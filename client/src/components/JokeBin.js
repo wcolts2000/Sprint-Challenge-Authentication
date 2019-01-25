@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Div = styled.div`
   background: #17333f;
   padding: 60px;
+  min-height: 100vh;
 `;
 
 const H1 = styled.h1`
@@ -35,6 +36,10 @@ const Hr = styled.hr`
 
 const Col = styled.div`
   column-count: 2;
+
+  @media (max-width: 650px) {
+    column-count: 1;
+  }
 `;
 
 const Li = styled.li`

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
-  min-height: calc(100vh - 87px);
+  min-height: 100vh;
   background: #17333f;
 
   & > div > form {

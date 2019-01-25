@@ -12,6 +12,10 @@ const Nav = styled.nav`
 
 const NavRight = styled.div`
   margin-left: auto;
+
+  @media (max-width: 450) {
+    display: none;
+  }
 `;
 const HomeNavLink = styled(NavLink)`
   text-decoration: none;
