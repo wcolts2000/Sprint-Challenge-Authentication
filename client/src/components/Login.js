@@ -150,6 +150,7 @@ export default class Login extends Component {
             this.setState({ error: true });
             setTimeout(() => {
               this.setState({ error: false, username: "", password: "" });
+              this.username.focus();
             }, 2000);
             console.log(err);
           } else {
